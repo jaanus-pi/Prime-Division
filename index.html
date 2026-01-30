@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Division</title>
+    <title>Audio Visualizer</title>
     <style>
         * {
             margin: 0;
@@ -71,7 +71,7 @@
     </style>
 </head>
 <body>
-    <div id="title">Prime Division</div>
+    <div id="title"></div>
     <div id="info">Load your audio file to begin</div>
     <canvas id="canvas"></canvas>
     <div id="controls">
@@ -129,9 +129,12 @@
                 playBtn.disabled = false;
                 restartBtn.disabled = false;
 
-                // Update title with filename
+                // Update title with filename and random color from visualizer palette
                 const filename = file.name.replace(/\.[^/.]+$/, '');
-                document.getElementById('title').textContent = filename;
+                const titleEl = document.getElementById('title');
+                titleEl.textContent = filename;
+                const randomHue = 200 + Math.random() * 80; // Blue to purple range (200-280)
+                titleEl.style.color = `hsl(${randomHue}, 70%, 65%)`;
             } catch (error) {
                 info.textContent = 'Error loading audio: ' + error.message;
                 console.error('Error loading audio:', error);
